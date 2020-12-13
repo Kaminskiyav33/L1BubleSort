@@ -2,19 +2,29 @@ import java.util.Arrays;
 
 public class MyMath {
     private int[] arr;
+    private int sizeRandom;
 
     @Override
     public String toString() {
-        return "MyMath{" +
-                "arr=" + Arrays.toString(arr) +
-                '}';
+        String s;
+        s = "MyMath{" +
+                "arr = ";
+
+        for (int i = 0; i < arr.length -1; i++) {
+            s = s + "[" + i + "]=" + arr[i] + "; ";
+        }
+
+        s = s + '}';
+
+        return s;
     }
 
-    MyMath(int n){
+    MyMath(int n, int size){
         arr = new int[n];
+        sizeRandom = size;
 
         for (int i = 0; i < n; i++) {
-            arr[i] = (int) (100*Math.random());
+            arr[i] = (int) (sizeRandom*Math.random());
         }
     }
 
@@ -55,11 +65,11 @@ public class MyMath {
 
             if (arr[middle] > num) {
                 right = middle;
-                middle = (right - left) /2;
+                middle = (right + left) /2;
             }
-            else if (arr[middle] > num) {
+            else if (arr[middle] < num) {
                 left = middle;
-                middle = (right - left) /2;
+                middle = (right + left) /2;
             }
         } while (left != middle && middle != right);
 
