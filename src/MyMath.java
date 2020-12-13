@@ -43,19 +43,25 @@ public class MyMath {
             return -1;
         }
 
-        int i,j;
+        int left = 0;
+        int right = arr.length-1;
+        int middle = (right)/2;
+
 
         do {
-            i = (arr.length-1)/2;
+            if (arr[middle] == num) {
+                return middle;
+            }
 
-        } while ( num != arr[i] && i!= j);
-
-        if (i > 0 && i < arr.length) {
-
-        } else {
-            return -1;
-        }
-
+            if (arr[middle] > num) {
+                right = middle;
+                middle = (right - left) /2;
+            }
+            else if (arr[middle] > num) {
+                left = middle;
+                middle = (right - left) /2;
+            }
+        } while (left != middle && middle != right);
 
         return -1;
 
